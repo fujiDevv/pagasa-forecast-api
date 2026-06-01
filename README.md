@@ -1,18 +1,23 @@
 # PAGASA Forecast API
 
-This project provides a simple Python API to fetch daily weather forecasts from the PAGASA (Philippine Atmospheric, Geophysical and Astronomical Services Administration) website. It scrapes data from the official PAGASA weather forecast page and serves it as a JSON API.
+![CI](https://github.com/joshuasarmiento/pagasa-forecast-api/actions/workflows/ci.yml/badge.svg)
+![Python Version](https://img.shields.io/badge/python-3.9%2B-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+
+This project provides a simple Python API to fetch daily weather forecasts from the PAGASA (Philippine Atmospheric, Geophysical and Astronomical Services Administration) website. It scrapes data from the official PAGASA weather forecast page and serves it as a clean JSON API.
 
 ## Features
 
 *   **Daily Weather Forecast:** Retrieves comprehensive daily weather information including synopsis, weather conditions, wind and coastal water conditions, temperature, humidity, tides, and astronomical information.
-*   **CORS Enabled:** Allow all origins for now; restrict later
-*   **Data Caching:** Implements a basic caching mechanism to reduce the number of requests to the PAGASA website and improve response times.
+*   **CORS Enabled:** Cross-Origin Resource Sharing is enabled for seamless frontend integrations (currently allows `localhost` origins locally, and `*` in production).
+*   **Data Caching:** Implements a basic in-memory caching mechanism to reduce the number of requests to the PAGASA website and improve response times.
+*   **Serverless Ready:** Configured to be easily deployed to Vercel via the included `vercel.json`.
 
 ## Installation
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository_url>
+    git clone https://github.com/joshuasarmiento/pagasa-forecast-api.git
     cd pagasa-forecast-api
     ```
 
@@ -24,22 +29,33 @@ This project provides a simple Python API to fetch daily weather forecasts from 
 
 3.  **Install dependencies:**
     ```bash
-    pip install requests beautifulsoup4
+    pip install -r requirements.txt
     ```
 
 ## Usage
 
-To start the API server, run the `pagasa-forecast.py` script:
+### Local Development
+
+To start the API server locally for development or testing, run the `local_server.py` script:
 
 ```bash
-python api/pagasa-forecast.py
+python local_server.py
 ```
 
 The API will be accessible at `http://localhost:8000`.
 
+### Vercel Deployment
+
+This project is configured for Vercel out of the box. You can deploy it using the Vercel CLI:
+
+```bash
+npm i -g vercel
+vercel
+```
+
 ## API Endpoints
 
-### `GET /`
+### `GET /api/pagasa-forecast` (or `/` locally)
 
 Returns the daily weather forecast data in JSON format.
 
@@ -86,11 +102,19 @@ Returns the daily weather forecast data in JSON format.
         }
     ]
 }
-```
+
+## Security
+
+Please read our [Security Policy](SECURITY.md) for details on our vulnerability disclosure process.
 
 ## Technologies Used
 
-*   Python 3
+*   Python 3.9
 *   `http.server` (built-in Python module)
 *   `requests`
 *   `BeautifulSoup4`
+*   Vercel Serverless Functions
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).

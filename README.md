@@ -102,6 +102,7 @@ Returns the daily weather forecast data in JSON format.
         }
     ]
 }
+```
 
 ## Security
 
